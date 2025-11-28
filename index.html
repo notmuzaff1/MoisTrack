@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="uz" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MoisTrack - Aqlli Dehqonchilik</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts (Poppins - Friendly & Clean) -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Animate.css -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Poppins', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            light: '#4ade80', // green-400
+                            DEFAULT: '#16a34a', // green-600
+                            dark: '#14532d', // green-900
+                            accent: '#0ea5e9' // sky-500
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Wave Animation Background */
+        .wave-bg {
+            background: linear-gradient(135deg, #f0fdf4 0%, #e0f2fe 100%);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+        }
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .dark body { background-color: #111827; color: #f3f4f6; }
+        
+        /* Glassmorphism Card (Added for Team Section) */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        }
+        .dark .glass-card {
+            background: rgba(31, 41, 55, 0.6);
+            border: 1px solid rgba(75, 85, 99, 0.4);
+        }
+
+        .fade-in-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+        }
+        .fade-in-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #16a34a; border-radius: 4px; }
+
+        .loader {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #16a34a;
+            border-radius: 50%;
+            width: 20px;
+            height: 20px;
+            animation: spin 1s linear infinite;
+            display: inline-block;
+        }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="text-gray-800 dark:text-gray-200 transition-colors duration-300">
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 bg-white/90 dark:bg-gray-900/90 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <div class="flex items-center gap-2">
+                    <i class="fa-solid fa-leaf text-brand text-3xl animate-bounce"></i>
+                    <span class="text-2xl font-bold tracking-wide text-gray-900 dark:text-white">Mois<span class="text-brand">Track</span></span>
+                </div>
+                <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#muammo" class="hover:text-brand transition font-medium">Muammo & Yechim</a>
+                    <a href="#why-us" class="hover:text-brand transition font-medium">Nima uchun biz?</a>
+                    <a href="#texnologiya" class="hover:text-brand transition font-medium">Texnologiya</a>
+                    <a href="#roadmap" class="hover:text-brand transition font-medium">Roadmap</a>
+                    <a href="#team" class="hover:text-brand transition font-medium">Jamoa</a>
+                    <button id="theme-toggle" class="p-2 rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 transition">
+                        <i id="theme-icon" class="fa-solid fa-moon"></i>
+                    </button>
+                </div>
+                <button id="mobile-menu-btn" class="md:hidden text-2xl focus:outline-none">
+                    <i class="fa-solid fa-bars"></i>
+                </button>
+            </div>
+        </div>
+        <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 px-4 pt-2 pb-6 shadow-lg">
+            <a href="#muammo" class="block py-2 hover:text-brand">Muammo & Yechim</a>
+            <a href="#why-us" class="block py-2 hover:text-brand">Nima uchun biz?</a>
+            <a href="#texnologiya" class="block py-2 hover:text-brand">Texnologiya</a>
+            <a href="#roadmap" class="block py-2 hover:text-brand">Roadmap</a>
+            <a href="#team" class="block py-2 hover:text-brand">Jamoa</a>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="relative pt-32 pb-20 wave-bg min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid md:grid-cols-2 gap-12 items-center">
+            <div class="text-center md:text-left fade-in-up">
+                <div class="inline-block bg-white/50 dark:bg-gray-800/50 text-brand-dark dark:text-brand-light px-4 py-1 rounded-full text-sm font-semibold mb-4 border border-brand/20 shadow-sm">
+                    🚀 Hozir MVP bosqichida
+                </div>
+                <h1 class="text-4xl md:text-6xl font-bold leading-tight mb-6 text-gray-900 dark:text-white">
+                    O‘simliklaringiz uchun <br>
+                    <span class="text-brand">Sun'iy Intellektli</span> <br>
+                    Aqlli Yordamchi
+                </h1>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 leading-relaxed">
+                    MoisTrack — bu ESP8266 va AI asosida tuproq namligini monitoring qiluvchi va avtomatik sug‘oruvchi tizim.
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+                    <a href="#ai-demo" class="bg-brand text-white px-8 py-4 rounded-full font-semibold hover:bg-brand-dark transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-robot"></i> AI Demo
+                    </a>
+                    <a href="#calculator" class="bg-white dark:bg-gray-800 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-calculator"></i> Foydani Hisoblash
+                    </a>
+                </div>
+            </div>
+            
+            <!-- AI Demo Interface -->
+            <div id="ai-demo" class="relative fade-in-up delay-200">
+                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700">
+                    <div class="border-b dark:border-gray-700 pb-3 mb-3 flex items-center gap-3">
+                        <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white"><i class="fa-solid fa-robot"></i></div>
+                        <div><h3 class="font-bold text-gray-800 dark:text-white">MoisTrack Bot</h3><span class="text-xs text-brand font-medium">Gemini AI</span></div>
+                    </div>
+                    <div class="space-y-4 text-sm h-64 overflow-y-auto pr-2" id="chat-simulation">
+                        <div class="bg-gray-100 dark:bg-gray-700 dark:text-white p-3 rounded-lg rounded-tl-none w-3/4">👋 Salom! Menga o'simlik nomini yozing, men parvarish bo'yicha maslahat beraman.</div>
+                    </div>
+                    <div class="mt-4 flex gap-2">
+                        <input type="text" id="chat-input" placeholder="Masalan: Pomidor..." class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-full px-4 py-2 focus:outline-none focus:border-brand text-sm">
+                        <button onclick="sendChat()" class="bg-brand text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-brand-dark transition"><i class="fa-solid fa-paper-plane"></i></button>
+                    </div>
+                </div>
+                <!-- Blobs -->
+                <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
+                <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent/30 rounded-full blur-3xl -z-10 animate-pulse delay-700"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 1. MUAMMO VA YECHIM -->
+    <section id="muammo" class="py-20 bg-white dark:bg-gray-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">1. Muammo va Yechim</h2>
+                <p class="text-gray-500 dark:text-gray-400">Biz qanday og'riqli nuqtani hal qilmoqdamiz?</p>
+            </div>
+            <div class="grid md:grid-cols-2 gap-12">
+                <!-- Problem -->
+                <div class="bg-red-50 dark:bg-red-900/20 p-8 rounded-2xl border border-red-100 dark:border-red-900/50 fade-in-up hover:shadow-lg transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-triangle-exclamation"></i></div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Muammo</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i><span><strong>Samarasiz sug'orish:</strong> Suv resurslarining isrof bo'lishi.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i><span><strong>Nazorat yo'qligi:</strong> O'simlik egasi safarda bo'lganda qurib qolish xavfi.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i><span><strong>Bilim yetishmasligi:</strong> Qachon va qancha sug'orishni bilmaslik.</span></li>
+                    </ul>
+                </div>
+                <!-- Solution -->
+                <div class="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl border border-green-100 dark:border-green-900/50 fade-in-up delay-100 hover:shadow-lg transition">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="w-12 h-12 bg-green-100 text-brand rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-check"></i></div>
+                        <h3 class="text-2xl font-bold text-gray-900 dark:text-white">Yechim</h3>
+                    </div>
+                    <ul class="space-y-4 text-gray-700 dark:text-gray-300">
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand mt-1"></i><span><strong>Avtomatlashtirish:</strong> Sensorlar orqali tuproq namligini o'lchab, avtomatik sug'orish.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand mt-1"></i><span><strong>Telegram Bot:</strong> Masofaviy boshqaruv va bildirishnomalar.</span></li>
+                        <li class="flex items-start gap-3"><i class="fa-solid fa-check text-brand mt-1"></i><span><strong>AI Maslahatchi:</strong> Har bir o'simlik uchun individual yondashuv.</span></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 3. NIMA UCHUN BIZ? -->
+    <section id="why-us" class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">2. Nima uchun bizning jamoa?</h2>
+                <p class="text-gray-500 dark:text-gray-400">Raqobatchilardan ustunligimiz.</p>
+            </div>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 fade-in-up">
+                    <i class="fa-solid fa-brain text-brand text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 dark:text-white">AI Integratsiyasi</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Biz shunchaki "on/off" tizimi emasmiz. Bizning AI o'simlik turini taniydi va unga moslashadi.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 fade-in-up delay-100">
+                    <i class="fa-solid fa-mobile-screen text-brand text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 dark:text-white">Foydalanuvchi Tajribasi</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Murakkab panellar o'rniga oddiy va qulay Telegram bot interfeysi.</p>
+                </div>
+                <div class="bg-white dark:bg-gray-900 p-8 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 fade-in-up delay-200">
+                    <i class="fa-solid fa-users-gear text-brand text-4xl mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 dark:text-white">Kuchli Jamoa</h3>
+                    <p class="text-gray-600 dark:text-gray-400 text-sm">Hardware, Software va Menejment bo'yicha mutaxassislardan iborat balanslashgan jamoa.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 5. TEXNOLOGIYA VA AMALGA OSHIRISH -->
+    <section id="texnologiya" class="py-20 bg-white dark:bg-gray-900 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">3. Amalga Oshirish Rejasi & Texnologiyalar</h2>
+                <p class="text-gray-500 dark:text-gray-400">G'oyadan tayyor mahsulotgacha bo'lgan texnik jarayon.</p>
+            </div>
+            
+            <!-- Bosqichlar -->
+            <div class="grid md:grid-cols-4 gap-6 mb-12">
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border-l-4 border-blue-500 shadow-sm fade-in-up">
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">1. Yig'ish (IoT)</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Sensorlar namlik va haroratni o'lchaydi.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border-l-4 border-yellow-500 shadow-sm fade-in-up delay-100">
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">2. Uzatish (API)</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">ESP8266 ma'lumotni serverga yuboradi.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border-l-4 border-purple-500 shadow-sm fade-in-up delay-200">
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">3. Tahlil (AI)</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Gemini AI optimal sug'orish vaqtini aniqlaydi.</p>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border-l-4 border-green-500 shadow-sm fade-in-up delay-300">
+                    <h4 class="font-bold text-gray-900 dark:text-white mb-2">4. Ijro (Action)</h4>
+                    <p class="text-xs text-gray-500 dark:text-gray-400">Rele ishga tushib, suv nasosini yoqadi.</p>
+                </div>
+            </div>
+
+            <!-- Tech Stack -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl fade-in-up">
+                    <h3 class="font-bold text-xl mb-4 dark:text-white"><i class="fa-solid fa-microchip text-blue-500"></i> Hardware</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">ESP8266 NodeMCU</span>
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">Moisture Sensor v1.2</span>
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">5V Relay Module</span>
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">Mini Water Pump</span>
+                    </div>
+                </div>
+                <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl fade-in-up delay-100">
+                    <h3 class="font-bold text-xl mb-4 dark:text-white"><i class="fa-brands fa-python text-yellow-500"></i> Software & AI</h3>
+                    <div class="flex flex-wrap gap-2">
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">Python (Aiogram)</span>
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">Google Gemini API</span>
+                        <span class="px-3 py-1 bg-white dark:bg-gray-700 rounded-full text-sm shadow-sm dark:text-gray-300">C++ (Arduino IDE)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 4. YO'L XARITASI (ROADMAP) -->
+    <section id="roadmap" class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">4. Yo'l Xaritasi</h2>
+                <div class="flex justify-center">
+                    <div class="h-1 w-24 bg-brand rounded"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 relative z-10">
+                <!-- Step 1 -->
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md text-center fade-in-up border-b-4 border-gray-300">
+                    <h3 class="text-lg font-bold mb-2 dark:text-white">Idea</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Muammoni aniqlash va yechim konsepsiyasi.</p>
+                    <span class="text-xs text-gray-400 font-bold mt-2 block">✅ BAJARILDI</span>
+                </div>
+                <!-- Step 2 -->
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md text-center fade-in-up delay-100 border-b-4 border-gray-300">
+                    <h3 class="text-lg font-bold mb-2 dark:text-white">Prototype</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Dastlabki sxema va kodni yozish.</p>
+                    <span class="text-xs text-gray-400 font-bold mt-2 block">✅ BAJARILDI</span>
+                </div>
+                <!-- Step 3 -->
+                <div class="bg-brand text-white p-6 rounded-xl shadow-xl transform scale-105 text-center fade-in-up delay-200 ring-4 ring-brand/30">
+                    <h3 class="text-lg font-bold mb-2">MVP</h3>
+                    <p class="text-sm text-white/90">Telegram bot va AI integratsiyasi.</p>
+                    <span class="text-xs bg-white text-brand px-2 py-1 rounded mt-2 inline-block font-bold">📍 HOZIR SHU YERDAMIZ</span>
+                </div>
+                <!-- Step 4 -->
+                <div class="bg-white dark:bg-gray-900 p-6 rounded-xl shadow-md text-center fade-in-up delay-300 opacity-70 border-b-4 border-gray-300">
+                    <h3 class="text-lg font-bold mb-2 dark:text-white">Launched</h3>
+                    <p class="text-sm text-gray-500 dark:text-gray-400">Bozorga chiqish va ommalashtirish.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 2. JAMOA (User Provided Section) -->
+    <section id="team" class="py-24">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16 reveal">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4 dark:text-white">Bizning Jamoa</h2>
+                <p class="text-gray-500 dark:text-gray-400">Innovatsiyalar ortidagi iqtidorlar.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 reveal">
+                
+                <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-brand-500 p-1">
+                        <img src="Abdulaziz.jpg" class="w-full h-full rounded-full bg-gray-100 object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg leading-tight mb-1 dark:text-white">Muzaffarov Abdulaziz</h3>
+                    <p class="text-brand-500 text-xs font-bold uppercase mb-2">CEO</p>
+                    <div class="flex justify-center gap-1 flex-wrap">
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">C++</span>
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">IoT</span>
+                    </div>
+                    <div class="mt-4 flex justify-center gap-3 text-gray-400">
+                        <a href="https://t.me/notmuzaff" class="hover:text-brand-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-blue-500 p-1">
+                        <img src="Zakariyo.jpg" class="w-full h-full rounded-full bg-gray-100 object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg leading-tight mb-1 dark:text-white">Qarshiyev Zakariyo</h3>
+                    <p class="text-blue-500 text-xs font-bold uppercase mb-2">CTO</p>
+                    <div class="flex justify-center gap-1 flex-wrap">
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">HTML</span>
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">CSS</span>
+                    </div>
+                    <div class="mt-4 flex justify-center gap-3 text-gray-400">
+                        <a href="https://t.me/yashnarv1c" class="hover:text-blue-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-yellow-500 p-1">
+                        <img src="Mirjalol.jpg" class="w-full h-full rounded-full bg-gray-100 object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg leading-tight mb-1 dark:text-white">Rahimov Mirjalol</h3>
+                    <p class="text-yellow-500 text-xs font-bold uppercase mb-2">PM</p>
+                    <div class="flex justify-center gap-1 flex-wrap">
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">Agile</span>
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">Sales</span>
+                    </div>
+                    <div class="mt-4 flex justify-center gap-3 text-gray-400">
+                        <a href="https://t.me/Imacroissant" class="hover:text-yellow-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+               
+                <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-purple-500 p-1">
+                        <img src="Humoyunmirzo.jpg" class="w-full h-full rounded-full bg-gray-100 object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg leading-tight mb-1 dark:text-white">Azimjonov Humoyun</h3>
+                    <p class="text-purple-500 text-xs font-bold uppercase mb-2">Backend</p>
+                    <div class="flex justify-center gap-1 flex-wrap">
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">Figma</span>
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">CSS</span>
+                    </div>
+                    <div class="mt-4 flex justify-center gap-3 text-gray-400">
+                        <a href="https://t.me/stepbystep1e" class="hover:text-purple-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+                
+                <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
+                    <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-red-500 p-1">
+                        <img src="Behruz.jpg" class="w-full h-full rounded-full bg-gray-100 object-cover">
+                    </div>
+                    <h3 class="font-bold text-lg leading-tight mb-1 dark:text-white">Bekchanov Behruz</h3>
+                    <p class="text-red-500 text-xs font-bold uppercase mb-2">Fullstack</p>
+                    <div class="flex justify-center gap-1 flex-wrap">
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">C++</span>
+                        <span class="px-2 py-0.5 bg-gray-100 dark:bg-gray-800 rounded text-[10px] dark:text-gray-300">Python</span>
+                    </div>
+                    <div class="mt-4 flex justify-center gap-3 text-gray-400">
+                        <a href="https://t.me/becko1602" class="hover:text-red-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CALCULATOR SECTION (BONUS) -->
+    <section id="calculator" class="py-20 bg-gray-50 dark:bg-gray-800 transition-colors">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-10 fade-in-up">
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white"><i class="fa-solid fa-calculator text-blue-500"></i> Foydani Hisoblash</h2>
+            </div>
+            <div class="max-w-3xl mx-auto bg-white dark:bg-gray-900 p-8 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 fade-in-up">
+                <div class="grid md:grid-cols-2 gap-6">
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Ekin turi</label>
+                        <select id="calc-crop" class="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2">
+                            <option value="paxta">Paxta</option>
+                            <option value="bugdoy">Bug'doy</option>
+                            <option value="pomidor">Pomidor</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-sm font-bold mb-2 text-gray-700 dark:text-gray-300">Maydon (Ga)</label>
+                        <input type="number" id="calc-area" value="1" class="w-full bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-600 rounded-lg px-4 py-2">
+                    </div>
+                </div>
+                <button onclick="calculateResources()" class="w-full mt-6 bg-brand text-white font-bold py-3 rounded-lg hover:bg-brand-dark transition">Hisoblash</button>
+                <div class="mt-6 flex justify-between text-center">
+                    <div><p class="text-xs text-gray-500">Tejalgan Suv</p><h4 class="text-2xl font-bold text-blue-500" id="res-water-save">0 m³</h4></div>
+                    <div><p class="text-xs text-gray-500">Tejalgan Pul</p><h4 class="text-2xl font-bold text-yellow-500" id="res-money-save">0 so'm</h4></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-10 border-t border-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center">
+            <div class="flex items-center gap-2"><i class="fa-solid fa-leaf text-brand text-2xl"></i><span class="text-xl font-bold">MoisTrack</span></div>
+            <div class="text-sm text-gray-400">&copy; 2025 MoisTrack Jamoasi</div>
+        </div>
+    </footer>
+
+    <!-- LOGIC -->
+    <script>
+        // API Key
+        let GEMINI_API_KEY = "AIzaSyDLfJC1yqBWw3Lcia2a3JWBB_56FyDjsG8"; 
+
+        // Theme Toggle
+        const themeBtn = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            html.classList.add('dark');
+            document.getElementById('theme-icon').classList.replace('fa-moon', 'fa-sun');
+        }
+        themeBtn.addEventListener('click', () => {
+            html.classList.toggle('dark');
+            document.getElementById('theme-icon').className = html.classList.contains('dark') ? 'fa-solid fa-sun' : 'fa-solid fa-moon';
+            localStorage.theme = html.classList.contains('dark') ? 'dark' : 'light';
+        });
+
+        // Mobile Menu
+        document.getElementById('mobile-menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('visible'); });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.fade-in-up, .reveal').forEach(el => observer.observe(el));
+
+        // --- AI Chat Logic ---
+        function checkKey() {
+            if(!GEMINI_API_KEY) {
+                GEMINI_API_KEY = prompt("API Kalitini kiriting:");
+                if(!GEMINI_API_KEY) return false;
+            }
+            return true;
+        }
+
+        async function sendChat() {
+            const input = document.getElementById('chat-input');
+            const txt = input.value.trim();
+            if(!txt || !checkKey()) return;
+
+            const box = document.getElementById('chat-simulation');
+            box.innerHTML += `<div class="bg-brand text-white p-3 rounded-lg rounded-tr-none ml-auto w-3/4 mb-2 text-right shadow-md">${txt}</div>`;
+            input.value = '';
+            box.scrollTop = box.scrollHeight;
+
+            const loadingDiv = document.createElement('div');
+            loadingDiv.className = "bg-gray-100 dark:bg-gray-700 dark:text-white p-3 rounded-lg rounded-tl-none w-1/2 mb-2 text-xs";
+            loadingDiv.innerHTML = '<div class="loader"></div>';
+            box.appendChild(loadingDiv);
+            box.scrollTop = box.scrollHeight;
+
+            try {
+                const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
+                const res = await fetch(url, {
+                    method: 'POST',
+                    headers: {'Content-Type': 'application/json'},
+                    body: JSON.stringify({ contents: [{ parts: [{ text: `Sen agronom-ekspertsan. Savol: "${txt}". Javob o'zbek tilida qisqa va lo'nda bo'lsin.` }] }] })
+                });
+                const data = await res.json();
+                const reply = data.candidates[0].content.parts[0].text;
+                
+                box.removeChild(loadingDiv);
+                box.innerHTML += `<div class="bg-gray-100 dark:bg-gray-700 dark:text-white p-3 rounded-lg rounded-tl-none w-11/12 mb-2 shadow-sm text-sm border-l-4 border-brand">${reply}</div>`;
+            } catch(e) {
+                box.removeChild(loadingDiv);
+                box.innerHTML += `<div class="bg-red-100 text-red-800 p-2 rounded mb-2 text-xs">Xatolik: Internetni tekshiring.</div>`;
+            }
+            box.scrollTop = box.scrollHeight;
+        }
+
+        // --- Calculator Logic ---
+        function calculateResources() {
+            const crop = document.getElementById('calc-crop').value;
+            const area = parseFloat(document.getElementById('calc-area').value);
+            const waterUsage = { 'paxta': 5500, 'bugdoy': 4500, 'pomidor': 3500 };
+            const baseWater = waterUsage[crop] * area;
+            const savedWater = Math.round(baseWater * 0.40);
+            const savedMoney = Math.round(savedWater * 300);
+            
+            document.getElementById('res-water-save').innerText = new Intl.NumberFormat('uz-UZ').format(savedWater) + " m³";
+            document.getElementById('res-money-save').innerText = new Intl.NumberFormat('uz-UZ').format(savedMoney) + " so'm";
+        }
+    </script>
+</body>
+</html>
