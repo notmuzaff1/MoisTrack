@@ -38,7 +38,7 @@
         }
     </script>
 
-    <!-- Dark Mode Initial Script -->
+    <!-- Dark Mode Script -->
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -82,6 +82,7 @@
                     <span class="text-2xl font-bold tracking-wide text-gray-900 dark:text-white">Mois<span class="text-brand">Track</span></span>
                 </div>
                 <div class="hidden md:flex space-x-8 items-center">
+                    <a href="#demo" class="text-brand font-bold bg-green-50 dark:bg-green-900/20 px-3 py-1 rounded-full border border-green-200 dark:border-green-800 transition">Demo Video</a>
                     <a href="#muammo" class="hover:text-brand transition font-medium">Muammo</a>
                     <a href="#why-us" class="hover:text-brand transition font-medium">Afzalliklar</a>
                     <a href="#texnologiya" class="hover:text-brand transition font-medium">Texnologiya</a>
@@ -97,6 +98,7 @@
             </div>
         </div>
         <div id="mobile-menu" class="hidden md:hidden bg-white dark:bg-gray-900 px-4 pt-2 pb-6 shadow-lg border-t dark:border-gray-800">
+            <a href="#demo" class="block py-3 text-brand font-bold border-b dark:border-gray-800">Demo Video</a>
             <a href="#muammo" class="block py-3 hover:text-brand border-b dark:border-gray-800">Muammo & Yechim</a>
             <a href="#why-us" class="block py-3 hover:text-brand border-b dark:border-gray-800">Nima uchun biz?</a>
             <a href="#texnologiya" class="block py-3 hover:text-brand border-b dark:border-gray-800">Texnologiya</a>
@@ -121,8 +123,8 @@
                     MoisTrack — bu ESP8266 va AI asosida tuproq namligini monitoring qiluvchi va avtomatik sug‘oruvchi tizim.
                 </p>
                 <div class="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
-                    <a href="#ai-demo" class="bg-brand text-white px-8 py-4 rounded-full font-semibold hover:bg-brand-dark transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-1">
-                        <i class="fa-solid fa-robot"></i> AI Demo
+                    <a href="#demo" class="bg-brand text-white px-8 py-4 rounded-full font-semibold hover:bg-brand-dark transition shadow-lg hover:shadow-xl flex items-center justify-center gap-2 transform hover:-translate-y-1">
+                        <i class="fa-solid fa-play"></i> Videoni Ko'rish
                     </a>
                     <a href="#calculator" class="bg-white dark:bg-gray-800 text-gray-700 dark:text-white border border-gray-300 dark:border-gray-600 px-8 py-4 rounded-full font-semibold hover:bg-gray-50 dark:hover:bg-gray-700 transition flex items-center justify-center gap-2 transform hover:-translate-y-1">
                         <i class="fa-solid fa-calculator"></i> Foydani Hisoblash
@@ -130,23 +132,93 @@
                 </div>
             </div>
             
-            <!-- AI Demo Interface -->
-            <div id="ai-demo" class="relative fade-in-up delay-200">
-                <div class="bg-white dark:bg-gray-800 p-6 rounded-2xl shadow-2xl border border-gray-100 dark:border-gray-700">
-                    <div class="border-b dark:border-gray-700 pb-3 mb-3 flex items-center gap-3">
-                        <div class="w-10 h-10 bg-brand rounded-full flex items-center justify-center text-white"><i class="fa-solid fa-robot"></i></div>
-                        <div><h3 class="font-bold text-gray-800 dark:text-white">MoisTrack Bot</h3><span class="text-xs text-brand font-medium">Powered by Gemini</span></div>
-                    </div>
-                    <div class="space-y-4 text-sm h-64 overflow-y-auto pr-2" id="chat-simulation">
-                        <div class="bg-gray-100 dark:bg-gray-700 dark:text-white p-3 rounded-lg rounded-tl-none w-3/4">👋 Salom! Menga o'simlik nomini yozing, men parvarish bo'yicha maslahat beraman.</div>
-                    </div>
-                    <div class="mt-4 flex gap-2">
-                        <input type="text" id="chat-input" placeholder="Savol yozing..." class="flex-1 border border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white rounded-full px-4 py-2 focus:outline-none focus:border-brand text-sm transition">
-                        <button onclick="sendChat()" class="bg-brand text-white w-10 h-10 rounded-full flex items-center justify-center hover:bg-brand-dark transition transform active:scale-95"><i class="fa-solid fa-paper-plane"></i></button>
-                    </div>
-                </div>
+            <!-- Hero Image Placeholder (removed old AI demo here to focus on video section) -->
+            <div class="relative fade-in-up delay-200 flex justify-center">
+                 <div class="bg-white/30 dark:bg-gray-800/30 p-4 rounded-full shadow-2xl backdrop-blur-sm border border-white/20">
+                    <i class="fa-solid fa-seedling text-9xl text-brand drop-shadow-lg animate-pulse"></i>
+                 </div>
+                 <!-- Blobs -->
                 <div class="absolute -top-10 -right-10 w-32 h-32 bg-brand/30 rounded-full blur-3xl -z-10 animate-pulse"></div>
                 <div class="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-accent/30 rounded-full blur-3xl -z-10 animate-pulse delay-700"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- NEW: DEMO VIDEO & JUDGE AI -->
+    <section id="demo" class="py-24 bg-gray-50 dark:bg-gray-800 transition-colors">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in-up">
+                <span class="bg-brand/10 text-brand text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">Live Demo</span>
+                <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mt-3 mb-4">Loyiha Namoyishi</h2>
+                <p class="text-gray-500 dark:text-gray-400">MoisTrack qanday ishlashini jonli ko'ring va sun'iy intellektimizni sinab ko'ring.</p>
+            </div>
+
+            <!-- Video Container -->
+            <div class="glass-card p-2 rounded-3xl shadow-2xl mb-12 fade-in-up">
+                <div class="relative w-full h-0 pb-[56.25%] bg-black rounded-2xl overflow-hidden group">
+                    <!-- Video Source -->
+                    <video class="absolute top-0 left-0 w-full h-full object-cover" controls poster="https://via.placeholder.com/1280x720/16a34a/ffffff?text=MoisTrack+Demo">
+                        <source src="video.mp4" type="video/mp4">
+                        Brauzeringiz video formatini qo'llab-quvvatlamaydi.
+                    </video>
+                </div>
+            </div>
+
+            <!-- Judge AI Chatbot -->
+            <div class="grid md:grid-cols-3 gap-8 fade-in-up delay-100">
+                <div class="md:col-span-1 space-y-4">
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-purple-500">
+                        <h3 class="font-bold text-lg text-gray-900 dark:text-white mb-2"><i class="fa-solid fa-gavel text-purple-500 mr-2"></i>Hakamlar Uchun</h3>
+                        <p class="text-sm text-gray-600 dark:text-gray-400">Bu maxsus AI yordamchi bo'lib, loyihaning texnik, iqtisodiy va innovatsion tomonlari bo'yicha hakamlarning savollariga professional javob berishga moslashtirilgan.</p>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl text-center">
+                        <p class="text-xs text-gray-500 mb-2">Tavsiya etilgan savollar:</p>
+                        <div class="flex flex-wrap gap-2 justify-center">
+                            <button onclick="fillQuestion('Bu loyiha qanday daromad keltiradi?')" class="text-xs bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full hover:bg-brand hover:text-white transition">💰 Monetizatsiya</button>
+                            <button onclick="fillQuestion('Raqobatchilardan ustunligi nimada?')" class="text-xs bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full hover:bg-brand hover:text-white transition">🚀 Raqobat</button>
+                            <button onclick="fillQuestion('Texnik qiyinchiliklar bormi?')" class="text-xs bg-gray-200 dark:bg-gray-700 px-3 py-1 rounded-full hover:bg-brand hover:text-white transition">⚙️ Texnik</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:col-span-2">
+                    <div class="bg-white dark:bg-gray-900 rounded-2xl shadow-xl overflow-hidden border border-gray-200 dark:border-gray-700 flex flex-col h-[500px]">
+                        <!-- Chat Header -->
+                        <div class="bg-gradient-to-r from-purple-600 to-indigo-600 p-4 flex items-center justify-between">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center text-white backdrop-blur-sm">
+                                    <i class="fa-solid fa-user-tie"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-white text-sm">MoisTrack Spikeri</h4>
+                                    <span class="text-xs text-purple-200 flex items-center gap-1"><span class="w-1.5 h-1.5 bg-green-400 rounded-full animate-pulse"></span> Online</span>
+                                </div>
+                            </div>
+                            <span class="text-xs font-mono text-white/60 border border-white/20 px-2 py-1 rounded">Hackathon Mode</span>
+                        </div>
+
+                        <!-- Chat Body -->
+                        <div id="judge-chat-box" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-black/20">
+                            <!-- Welcome Message -->
+                            <div class="flex gap-3">
+                                <div class="w-8 h-8 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-white text-xs mt-1"><i class="fa-solid fa-robot"></i></div>
+                                <div class="bg-white dark:bg-gray-800 p-3 rounded-2xl rounded-tl-none shadow-sm text-sm max-w-[85%] border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200">
+                                    Assalomu alaykum, hurmatli hakamlar! Men MoisTrack loyihasining virtual vakiliman. Loyihaning texnik yechimi, biznes modeli yoki kelajak rejalari bo'yicha istalgan savolingizni bering.
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Input Area -->
+                        <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+                            <div class="flex gap-2">
+                                <input type="text" id="judge-input" placeholder="Hakamlar savoli..." class="flex-1 bg-gray-100 dark:bg-gray-900 border-none rounded-xl px-4 py-3 focus:ring-2 focus:ring-purple-500 outline-none text-sm transition dark:text-white">
+                                <button onclick="sendJudgeChat()" class="px-4 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-xl transition shadow-lg shadow-purple-500/30">
+                                    <i class="fa-solid fa-paper-plane"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -159,6 +231,7 @@
                 <div class="h-1 w-20 bg-brand mx-auto rounded"></div>
             </div>
             <div class="grid md:grid-cols-2 gap-12">
+                <!-- Problem -->
                 <div class="bg-red-50 dark:bg-red-900/20 p-8 rounded-2xl border border-red-100 dark:border-red-900/50 fade-in-up hover:shadow-lg transition duration-300">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 bg-red-100 text-red-500 rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-triangle-exclamation"></i></div>
@@ -170,6 +243,7 @@
                         <li class="flex items-start gap-3"><i class="fa-solid fa-xmark text-red-500 mt-1"></i><span><strong>Bilim yetishmasligi:</strong> Qachon va qancha sug'orishni bilmaslik.</span></li>
                     </ul>
                 </div>
+                <!-- Solution -->
                 <div class="bg-green-50 dark:bg-green-900/20 p-8 rounded-2xl border border-green-100 dark:border-green-900/50 fade-in-up delay-100 hover:shadow-lg transition duration-300">
                     <div class="flex items-center gap-4 mb-6">
                         <div class="w-12 h-12 bg-green-100 text-brand rounded-full flex items-center justify-center text-xl"><i class="fa-solid fa-check"></i></div>
@@ -219,6 +293,7 @@
                 <h2 class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">3. Texnologiyalar</h2>
                 <div class="h-1 w-20 bg-brand mx-auto rounded"></div>
             </div>
+            
             <div class="grid md:grid-cols-4 gap-6 mb-12">
                 <div class="bg-gray-50 dark:bg-gray-800 p-5 rounded-xl border-l-4 border-blue-500 shadow-sm fade-in-up hover:shadow-md transition">
                     <h4 class="font-bold text-gray-900 dark:text-white mb-2">1. Yig'ish (IoT)</h4>
@@ -237,6 +312,7 @@
                     <p class="text-xs text-gray-500 dark:text-gray-400">Rele ishga tushib, suv nasosini yoqadi.</p>
                 </div>
             </div>
+
             <div class="grid md:grid-cols-2 gap-8">
                 <div class="bg-gray-50 dark:bg-gray-800 p-6 rounded-2xl fade-in-up">
                     <h3 class="font-bold text-xl mb-4 dark:text-white"><i class="fa-solid fa-microchip text-blue-500"></i> Hardware</h3>
@@ -296,6 +372,7 @@
             </div>
             
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 reveal">
+                
                 <!-- Member 1 -->
                 <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-brand-500 p-1">
@@ -311,6 +388,7 @@
                         <a href="https://t.me/notmuzaff" class="hover:text-brand-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     </div>
                 </div>
+                
                 <!-- Member 2 -->
                 <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-blue-500 p-1">
@@ -326,6 +404,7 @@
                         <a href="https://t.me/yashnarv1c" class="hover:text-blue-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     </div>
                 </div>
+                
                 <!-- Member 3 -->
                 <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-yellow-500 p-1">
@@ -341,6 +420,7 @@
                         <a href="https://t.me/Imacroissant" class="hover:text-yellow-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     </div>
                 </div>
+               
                 <!-- Member 4 -->
                 <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-purple-500 p-1">
@@ -356,6 +436,7 @@
                         <a href="https://t.me/stepbystep1e" class="hover:text-purple-500" target="_blank"><i class="fa-brands fa-telegram"></i></a>
                     </div>
                 </div>
+                
                 <!-- Member 5 -->
                 <div class="glass-card p-6 rounded-3xl text-center group hover:-translate-y-2 transition duration-300">
                     <div class="w-24 h-24 mx-auto rounded-full overflow-hidden mb-4 border-2 border-red-500 p-1">
@@ -416,7 +497,7 @@
     <!-- LOGIC -->
     <script>
         // --- API KEY CONFIG ---
-        let GEMINI_API_KEY = "AIzaSyCubQBygEdc-QQGxwXt8NZqMx7mlp49mRY"; 
+        let GEMINI_API_KEY = "AIzaSyCr2Bsdf3hhKcngXgYujakMH62lscYsH3E"; 
 
         // --- THEME TOGGLE ---
         const themeBtn = document.getElementById('theme-toggle');
@@ -447,7 +528,12 @@
         }, { threshold: 0.1 });
         document.querySelectorAll('.fade-in-up, .reveal').forEach(el => observer.observe(el));
 
-        // --- AI CHAT LOGIC ---
+        // --- FILL QUESTION FOR JUDGE AI ---
+        function fillQuestion(q) {
+            document.getElementById('judge-input').value = q;
+        }
+
+        // --- CHECK API KEY ---
         function checkKey() {
             if(!GEMINI_API_KEY) {
                 GEMINI_API_KEY = prompt("API Kalitini kiriting (Hackathon uchun):");
@@ -459,29 +545,43 @@
             return true;
         }
 
-        async function sendChat() {
-            const input = document.getElementById('chat-input');
+        // --- JUDGE AI CHAT LOGIC ---
+        async function sendJudgeChat() {
+            const input = document.getElementById('judge-input');
             const txt = input.value.trim();
             if(!txt || !checkKey()) return;
 
-            const box = document.getElementById('chat-simulation');
-            box.innerHTML += `<div class="bg-brand text-white p-3 rounded-lg rounded-tr-none ml-auto w-3/4 mb-2 text-right shadow-md animate__animated animate__fadeInRight">${txt}</div>`;
+            const box = document.getElementById('judge-chat-box');
+            // User Msg
+            box.innerHTML += `<div class="flex gap-3 justify-end"><div class="bg-purple-600 text-white p-3 rounded-2xl rounded-tr-none shadow-md text-sm max-w-[85%] animate__animated animate__fadeInRight">${txt}</div></div>`;
             input.value = '';
             box.scrollTop = box.scrollHeight;
 
-            const loadingDiv = document.createElement('div');
-            loadingDiv.className = "bg-gray-100 dark:bg-gray-700 dark:text-white p-3 rounded-lg rounded-tl-none w-1/2 mb-2 text-xs";
-            loadingDiv.innerHTML = '<div class="loader"></div>';
-            box.appendChild(loadingDiv);
+            // Loading
+            const loadId = 'load-' + Date.now();
+            box.innerHTML += `<div id="${loadId}" class="flex gap-3"><div class="w-8 h-8 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-white text-xs mt-1"><i class="fa-solid fa-robot"></i></div><div class="bg-white dark:bg-gray-800 p-3 rounded-2xl rounded-tl-none shadow-sm text-sm border border-gray-100 dark:border-gray-700"><div class="loader"></div></div></div>`;
             box.scrollTop = box.scrollHeight;
 
             try {
-                // Using gemini-2.5-flash-preview-09-2025 model
+                // Judge Persona Prompt
+                const prompt = `
+                    You are the representative of team "MoisTrack" at a hackathon. 
+                    Judges are asking questions. Answer professionally, confidently, and technically.
+                    Highlight: 
+                    1. Innovation: Combination of IoT and Generative AI (Gemini).
+                    2. Efficiency: Saves 40% water.
+                    3. Scalability: Easy to deploy for large farms.
+                    Tone: Professional, persuasive, yet accessible. 
+                    Language: Uzbek.
+                    User Question: "${txt}"
+                    Keep it relatively short (max 3-4 sentences).
+                `;
+
                 const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${GEMINI_API_KEY}`;
                 const res = await fetch(url, {
                     method: 'POST',
                     headers: {'Content-Type': 'application/json'},
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `Sen agronom-ekspertsan. Savol: "${txt}". Javob o'zbek tilida, qisqa va aniq bo'lsin.` }] }] })
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
                 });
                 const data = await res.json();
                 
@@ -489,11 +589,18 @@
                 
                 const reply = data.candidates[0].content.parts[0].text;
                 
-                box.removeChild(loadingDiv);
-                box.innerHTML += `<div class="bg-gray-100 dark:bg-gray-700 dark:text-white p-3 rounded-lg rounded-tl-none w-11/12 mb-2 shadow-sm text-sm border-l-4 border-brand animate__animated animate__fadeInLeft">${reply}</div>`;
+                document.getElementById(loadId).remove();
+                box.innerHTML += `
+                    <div class="flex gap-3 animate__animated animate__fadeInLeft">
+                        <div class="w-8 h-8 rounded-full bg-purple-600 flex-shrink-0 flex items-center justify-center text-white text-xs mt-1"><i class="fa-solid fa-robot"></i></div>
+                        <div class="bg-white dark:bg-gray-800 p-3 rounded-2xl rounded-tl-none shadow-sm text-sm max-w-[85%] border border-gray-100 dark:border-gray-700 text-gray-700 dark:text-gray-200">
+                            ${reply}
+                        </div>
+                    </div>
+                `;
             } catch(e) {
-                box.removeChild(loadingDiv);
-                box.innerHTML += `<div class="bg-red-100 text-red-800 p-2 rounded mb-2 text-xs">Xatolik: Internetni tekshiring yoki API kalit noto'g'ri. (${e.message})</div>`;
+                document.getElementById(loadId).remove();
+                box.innerHTML += `<div class="bg-red-100 text-red-800 p-2 rounded mb-2 text-xs">Xatolik: ${e.message}</div>`;
             }
             box.scrollTop = box.scrollHeight;
         }
